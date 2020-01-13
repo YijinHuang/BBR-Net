@@ -19,7 +19,7 @@ model_urls = {
     'wide_resnet101_2': 'https://download.pytorch.org/models/wide_resnet101_2-32ee1156.pth',
 }
 
-
+ 
 def conv3x3(in_planes, out_planes, stride=1, groups=1, dilation=1):
     """3x3 convolution with padding"""
     return nn.Conv2d(in_planes, out_planes, kernel_size=3, stride=stride,
@@ -267,7 +267,7 @@ def resnet_bbr(pretrained=False, progress=True, **kwargs):
         pretrained (bool): If True, returns a model pre-trained on ImageNet
         progress (bool): If True, displays a progress bar of the download to stderr
     """
-    return _resnet('resnet_bbr', BasicBlock, [1, 1, 1, 1], pretrained, progress,
+    return _resnet('resnet_bbr', BasicBlock, [2, 2, 2, 2], pretrained, progress,
                    **kwargs)
 
 
