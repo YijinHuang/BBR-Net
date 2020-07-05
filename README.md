@@ -1,6 +1,6 @@
 ## BBR-net
 
-this repository is the implementation of the paper published in ISBI2020: ***Automated Hemorrhage Detection from Coarsely Annotated Fundus Images in Diabetic Retinopathy***.
+This repository is the implementation of the paper published in ISBI2020: ***Automated Hemorrhage Detection from Coarsely Annotated Fundus Images in Diabetic Retinopathy***.
 
 ![Picture1](./img/pipeline.png)
 
@@ -20,7 +20,7 @@ img2.JPG,2354,1987,2442,2062,HEM
 
 Then, replace the csv file path in `config.py`.
 
-Then, you can train the model by run:
+You can train the model by run:
 
 ```shell
 $ python main.py
