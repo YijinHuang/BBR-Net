@@ -4,7 +4,7 @@ this repository is the implementation of the paper published in ISBI2020: ***Aut
 
 \* The implementation is not exactly the same as the paper, but it will be updated soon.
 
-![Picture1](D:\Laboratory\document\WORKS\ISBI_2019_0&1\Picture1.png)
+![Picture1](./img/pipeline.png)
 
 
 
