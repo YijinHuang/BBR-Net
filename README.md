@@ -2,21 +2,29 @@
 
 this repository is the implementation of the paper published in ISBI2020: ***Automated Hemorrhage Detection from Coarsely Annotated Fundus Images in Diabetic Retinopathy***.
 
-\* The implementation is not exactly the same as the paper, but it will be updated soon.
-
 ![Picture1](./img/pipeline.png)
 
 
 
 ### Run
 
-You can run this code by:
+Organize your data in a csv file with format `path_to_img.JPG,x1,y1,x2,y2,class` for each lesion. For example:
+
+```
+img1.JPG,529,1796,596,1849,HEM
+img1.JPG,692,1490,736,1530,HEM
+img1.JPG,1922,170,1965,214,HEM
+img2.JPG,1948,2013,2049,2107,HEM
+img2.JPG,2354,1987,2442,2062,HEM
+```
+
+Then, replace the csv file path in `config.py`.
+
+Then, you can train the model by run:
 
 ```shell
 $ python main.py
 ```
-
-Data path and most of configurations are in  `config.py`.
 
 
 

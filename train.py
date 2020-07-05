@@ -22,7 +22,7 @@ def train(model, train_dataset, val_dataset, epochs, learning_rate, batch_size, 
 
     # define loss and optimizier
     # cross_entropy = nn.MSELoss()
-    def IouLoss(pred, target):
+    def GIouLoss(pred, target):
         giou = bbox_giou(pred, target).mean()
         return 1 - giou
 
@@ -41,7 +41,7 @@ def train(model, train_dataset, val_dataset, epochs, learning_rate, batch_size, 
         model,
         train_loader,
         val_loader,
-        nn.MSELoss(),
+        GIouLoss,
         optimizer,
         epochs,
         save_path,

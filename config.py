@@ -1,10 +1,10 @@
 CONFIG = {
     'TRAIN_PATH': '../train/gt.csv',
     'TEST_PATH': '../test/gt.csv',
-    'SAVE_PATH': '../result/rectify_net/bbr_net_giou.pt',
-    'RECORD_PATH': '../result/rectify_net/bbr_net_giou.rec',
+    'SAVE_PATH': '../result/bbr_net_giou.pt',
+    'RECORD_PATH': '../result/bbr_net_giou.rec',
     'PRETRAINED_PATH': None,
-    'LEARNING_RATE': 0.003,
+    'LEARNING_RATE': 0.01,
     'INPUT_SIZE': 128,
     'BOTTLENECK_SIZE': 512,
     'NUM_CLASS': 4,
