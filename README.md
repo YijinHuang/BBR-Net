@@ -9,7 +9,7 @@ This repository is the official implementation of the paper published in ISBI202
 ### Overview
 ![Picture1](./img/pipeline.png)
 
-Our proposed BBR-net and pipeline aims to refine coarsely-annotated dataset for object detection. In the paper, we present its application in hemorrhage detection in fundus images. Also, this approach can be extended to most of object detection tasks, especially tiny lesion detection task. 
+Our proposed BBR-net and pipeline aims to refine coarsely-annotated dataset for object detection. In the paper, we present its application in hemorrhage detection in fundus images. Also, this approach works well in most of object detection tasks, especially tiny lesion detection task. 
 
 
 
