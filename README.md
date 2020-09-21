@@ -1,4 +1,5 @@
 ## BBR-net
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4041331.svg)](https://doi.org/10.5281/zenodo.4041331)
 
 This repository is the official implementation of the paper published in ISBI2020: ***Automated Hemorrhage Detection from Coarsely Annotated Fundus Images in Diabetic Retinopathy***.
 
