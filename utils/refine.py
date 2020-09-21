@@ -45,10 +45,10 @@ class RefineNet():
 
                 if file_path not in self.new_annotations.keys():
                     self.new_annotations[file_path] = []
-                
+
                 new_coor = self.refine(lesion_patch)
                 x1_ratio, y1_ratio, x2_ratio, y2_ratio = new_coor
-                
+
                 new_x1 = int(w * x1_ratio + x1)
                 new_y1 = int(h * y1_ratio + y1)
                 new_x2 = int(w * x2_ratio + x1)
@@ -58,7 +58,7 @@ class RefineNet():
                 if new_y1 == new_y2:
                     new_y1, new_y2 = y1, y2
                 self.new_annotations[file_path].append((new_x1, new_y1, new_x2, new_y2))
-            
+
     def write_annotations(self, new_csv_path, cat):
         with open(new_csv_path, 'w') as csv_file:
             for file_path, coors in self.new_annotations.items():
@@ -91,8 +91,14 @@ class RefineNet():
             return annotations
 
 
+# inference example
 if __name__ == "__main__":
-    refine_net = RefineNet('./test_giou.pt')
-    refine_net.initial('/data1/huangyj/ophthamology/dataset/lesion/gaoyao/hemorrhage/annotation_test.csv')
+    trained_model_path = 'path/to/model'
+    origin_annotation = 'path/to/origin_annotation_csv_file'
+    refined_annotation = 'path/to/refined_annotation_csv_file'
+    lesion_name = 'HEM'
+
+    refine_net = RefineNet(trained_model_path)
+    refine_net.initial(origin_annotation)
     refine_net.batch_refine()
-    refine_net.write_annotations('/data1/huangyj/ophthamology/dataset/lesion/gaoyao/hemorrhage/refined_annotation_test.csv', 'HEM')
+    refine_net.write_annotations(refined_annotation, lesion_name)

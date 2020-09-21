@@ -1,19 +1,23 @@
 import os
-
 import pickle
+import random
+
 import torch
 import numpy as np
 import torchvision.models as models
 
+import bbr_net
 from config import CONFIG
-from model import MyModel, MyEfficientNet
+from model import MyModel
 from train import train, evaluate
 from data_utils import generate_data
 
-torch.set_num_threads(8)
-
 
 def main():
+    # reproducibility
+    seed = CONFIG['RANDOM_SEED']
+    set_random_seed(seed)
+
     # load dataset
     train_dataset, test_dataset, val_dataset = generate_data(
         CONFIG['TRAIN_PATH'],
@@ -26,14 +30,10 @@ def main():
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
 
-    import bbr_net
     model = MyModel(bbr_net.resnet_bbr, CONFIG['BOTTLENECK_SIZE'], CONFIG['NUM_CLASS'], pretrained=False).cuda()
 
-    if torch.cuda.device_count() > 1:
-        model = torch.nn.DataParallel(model)
-
     # train
-    model, record_epochs, accs, losses = train(
+    model, record_epochs, val_ious, losses = train(
         model=model,
         train_dataset=train_dataset,
         val_dataset=val_dataset,
@@ -43,12 +43,23 @@ def main():
         save_path=CONFIG['SAVE_PATH']
     )
     pickle.dump(
-        (record_epochs, accs, losses),
+        (record_epochs, val_ious, losses),
         open(CONFIG['RECORD_PATH'], 'wb')
     )
 
     # test
-    evaluate(CONFIG['SAVE_PATH'], test_dataset, '../../result/rectify_net/origin_test')
+    visualized_images_path = CONFIG['VISUALIZED_IMAGES_PATH']
+    if not os.path.exists(visualized_images_path):
+        os.makedirs(visualized_images_path)
+    evaluate(CONFIG['SAVE_PATH'], test_dataset, visualized_images_path)
+
+
+def set_random_seed(seed):
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.backends.cudnn.deterministic = True
 
 
 if __name__ == '__main__':
